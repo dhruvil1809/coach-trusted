@@ -1,0 +1,85 @@
+volumes:
+  coach_trusted_postgres_data: {}
+  coach_trusted_postgres_data_backups: {}
+  coach_trusted_traefik: {}
+  coach_trusted_django_media: {}
+  coach_trusted_redis_data: {}
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    image: coach_trusted_production_django
+    restart: unless-stopped
+    volumes:
+      - coach_trusted_django_media:/app/core/media
+      - ./.env:/app/.env
+      - ./.envs/.local/firebase.json:/app/.envs/.local/firebase.json:ro
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.env
+    ports:
+      - "5000:5000"
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: coach_trusted_production_postgres
+    restart: unless-stopped
+    volumes:
+      - coach_trusted_postgres_data:/var/lib/postgresql/data
+      - coach_trusted_postgres_data_backups:/backups
+    env_file:
+      - ./.env
+
+  redis:
+    image: docker.io/redis:6
+    restart: unless-stopped
+    volumes:
+      - coach_trusted_redis_data:/data
+
+  celeryworker:
+    <<: *django
+    image: coach_trusted_production_celeryworker
+    restart: unless-stopped
+    ports: []
+    command: /start-celeryworker
+    env_file:
+      - ./.env
+
+  celerybeat:
+    <<: *django
+    image: coach_trusted_production_celerybeat
+    restart: unless-stopped
+    ports: []
+    command: /start-celerybeat
+    env_file:
+      - ./.env
+
+  flower:
+    <<: *django
+    image: coach_trusted_production_flower
+    restart: unless-stopped
+    ports:
+      - "5555:5555"
+    command: /start-flower
+    env_file:
+      - ./.env
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/production/nginx/Dockerfile
+    image: coach_trusted_production_nginx
+    restart: unless-stopped
+    depends_on:
+      - django
+    volumes:
+      - coach_trusted_django_media:/usr/share/nginx/media:ro
+    ports:
+      - "64111:80"
