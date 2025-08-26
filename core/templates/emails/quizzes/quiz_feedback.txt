@@ -1,0 +1,29 @@
+Hello {{ first_name }},
+
+Thank you for completing our coaching quiz! We're excited to help you on your {{ journey }} journey toward achieving your goals.
+
+YOUR QUIZ RESULTS:
+==================
+Journey Level: {{ journey|title }}
+Category: {{ category }}
+Fields of Interest: {{ fields }}
+
+Our expert team will carefully review your information and connect you with coaches who perfectly match your needs, goals, and preferences.
+
+WHAT HAPPENS NEXT?
+==================
+- Our matching algorithm will find coaches suited to your journey level
+- We'll review coaches specializing in your areas of interest
+- You'll receive personalized coach recommendations within 24-48 hours
+- You can browse profiles and connect with your chosen coach
+
+We believe that everyone deserves access to quality coaching, and we're committed to helping you find the perfect match for your coaching journey.
+
+If you have any questions in the meantime, please don't hesitate to reach out to our support team. We're here to help!
+
+Best regards,
+The Coach Trusted Team
+
+---
+This email was sent because you completed a coaching quiz on our platform.
+If you have any questions, please contact our support team.

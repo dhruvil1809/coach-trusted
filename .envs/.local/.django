@@ -1,0 +1,22 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+
+# Flower
+CELERY_FLOWER_USER=TqMczHppreRnJWTjXFVWRrPpMuFSRrHt
+CELERY_FLOWER_PASSWORD=UNiitazNqPVBpqyoy5TtGprFY3s3eNIvkAHXTi6gMBTz4K7ggFC5eToaf5sfnoZ7
+
+# Storage (S3 - Cloudflare R2)
+# ------------------------------------------------------------------------------
+AWS_STORAGE_BUCKET_NAME=coach-trusted-development
+AWS_S3_ENDPOINT_URL=https://f26d9d016614b1f78aea52333ba66671.r2.cloudflarestorage.com
+AWS_S3_ACCESS_KEY_ID=53174aa8c18e00bf9c6a6276e3bc9b52
+AWS_S3_SECRET_ACCESS_KEY=1242829800a18a8f77aed740d22bda4d0228241d2202f6d2657a4786869d4bf3
+# ------------------------------------------------------------------------------

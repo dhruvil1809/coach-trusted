@@ -1,0 +1,156 @@
+import pytest
+from django.test import Client
+from django.test import TestCase
+from django.urls import reverse
+from rest_framework import status
+
+from coach.tests.factories import CategoryFactory
+
+
+@pytest.mark.django_db
+class CategoryListAPIViewTestCase(TestCase):
+    """Test cases for the CategoryListAPIView."""
+
+    def setUp(self):
+        """Set up test data."""
+        self.client = Client()
+        self.list_url = reverse("coach:categories")
+
+        # Create test categories
+        self.category1 = CategoryFactory(name="Life Coaching")
+        self.category2 = CategoryFactory(name="Business Coaching")
+        self.category3 = CategoryFactory(name="Health Coaching")
+
+    def test_list_categories_success(self):
+        """Test successful retrieval of categories."""
+        response = self.client.get(self.list_url)
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+
+        # Check response is a list
+        assert isinstance(data, list)
+
+        # Check categories count
+        assert len(data) == 3  # noqa: PLR2004
+
+        # Verify categories data structure
+        for category in data:
+            assert "id" in category
+            assert "uuid" in category
+            assert "name" in category
+            # Should not contain description (as per serializer)
+            assert "description" not in category
+            # New: Should contain subcategories as a list
+            assert "subcategories" in category
+            assert isinstance(category["subcategories"], list)
+            # Each subcategory should have id, uuid, name
+            for subcat in category["subcategories"]:
+                assert "id" in subcat
+                assert "uuid" in subcat
+                assert "name" in subcat
+
+    def test_categories_ordered_by_name(self):
+        """Test that categories are ordered by name."""
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        category_names = [cat["name"] for cat in data]
+        assert category_names == sorted(category_names)
+
+    def test_specific_category_names_present(self):
+        """Test that specific category names are present in response."""
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        category_names = [cat["name"] for cat in data]
+        assert "Life Coaching" in category_names
+        assert "Business Coaching" in category_names
+        assert "Health Coaching" in category_names
+
+    def test_empty_categories(self):
+        """Test response when no categories exist."""
+        # Delete all categories
+        from coach.models import Category
+
+        Category.objects.all().delete()
+
+        response = self.client.get(self.list_url)
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+
+        assert isinstance(data, list)
+        assert len(data) == 0
+
+    def test_no_pagination(self):
+        """Test that the endpoint does not use pagination."""
+        # Create many categories to test pagination is disabled
+        for i in range(25):
+            CategoryFactory(name=f"Category {i:02d}")
+
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        # Should not have pagination keys
+        assert isinstance(data, list)  # Direct list, not paginated response
+
+        # Should return all items directly
+        assert len(data) >= 25  # At least 25 plus setUp categories  # noqa: PLR2004
+
+    def test_no_authentication_required(self):
+        """Test that endpoint is accessible without authentication."""
+        # This test verifies that the endpoint works without any auth
+        response = self.client.get(self.list_url)
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_category_uuid_fields(self):
+        """Test that category UUID fields are properly serialized."""
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        for category in data:
+            assert category["uuid"] is not None
+            assert isinstance(category["uuid"], str)
+            # UUID should be in the correct format (36 characters with hyphens)
+            assert len(category["uuid"]) == 36  # noqa: PLR2004
+            assert category["uuid"].count("-") == 4  # noqa: PLR2004
+
+    def test_category_id_fields(self):
+        """Test that category ID fields are properly serialized."""
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        for category in data:
+            assert category["id"] is not None
+            assert isinstance(category["id"], int)
+
+    def test_category_name_fields(self):
+        """Test that category name fields are properly serialized."""
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        for category in data:
+            assert category["name"] is not None
+            assert isinstance(category["name"], str)
+            assert len(category["name"]) > 0
+
+    def test_category_subcategories_structure(self):
+        """Test that subcategories are properly serialized for each category."""
+        from coach.models import SubCategory
+
+        # Add subcategories to a category
+        _ = SubCategory.objects.create(name="Sub1", category=self.category1)
+        _ = SubCategory.objects.create(name="Sub2", category=self.category1)
+        response = self.client.get(self.list_url)
+        data = response.json()
+
+        # Find the category1 in response
+        cat = next((c for c in data if c["id"] == self.category1.id), None)
+        assert cat is not None
+        assert "subcategories" in cat
+        subcat_names = [s["name"] for s in cat["subcategories"]]
+        assert "Sub1" in subcat_names
+        assert "Sub2" in subcat_names
+        for subcat in cat["subcategories"]:
+            assert set(subcat.keys()) == {"id", "uuid", "name"}

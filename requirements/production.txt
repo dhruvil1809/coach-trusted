@@ -1,0 +1,19 @@
+# PRECAUTION: avoid production dependencies that aren't in development
+
+-r base.txt
+
+gunicorn==23.0.0  # https://github.com/benoitc/gunicorn
+psycopg[c]==3.2.9  # https://github.com/psycopg/psycopg
+sentry-sdk==2.33.2  # https://github.com/getsentry/sentry-python
+
+# Django
+# ------------------------------------------------------------------------------
+django-anymail==13.0  # https://github.com/anymail/django-anymail
+
+# Storage
+django-storages==1.14.6  # https://pypi.org/project/django-storages/
+boto3==1.39.10  # https://pypi.org/project/boto3/
+
+# Django
+# ------------------------------------------------------------------------------
+factory-boy==3.3.3  # https://github.com/FactoryBoy/factory_boy
