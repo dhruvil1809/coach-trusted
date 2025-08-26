@@ -17,12 +17,15 @@ services:
     volumes:
       - coach_trusted_django_media:/app/core/media
       - ./.envs/.production:/app/.envs/.production
+      - ./.envs/.local/firebase.json:/app/.envs/.local/firebase.json:ro
     depends_on:
       - postgres
       - redis
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
+    ports:
+      - "5000:5000"
     command: /start
 
   postgres:
@@ -48,18 +51,22 @@ services:
     <<: *django
     image: coach_trusted_production_celeryworker
     restart: unless-stopped
+    ports: []
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
     image: coach_trusted_production_celerybeat
     restart: unless-stopped
+    ports: []
     command: /start-celerybeat
 
   flower:
     <<: *django
     image: coach_trusted_production_flower
     restart: unless-stopped
+    ports:
+      - "5555:5555"
     command: /start-flower
 
   nginx:

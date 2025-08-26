@@ -14,7 +14,7 @@ SECRET_KEY = env(
     default="DUCBLH5IsLd4dnvZO4s5Q8qivzOLzimqBmMfMhkdrkvMjXL3ea79yw3ZXSkEVByP",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "192.168.1.20", "coach-trusted-backend.onrender.com", "coach-trusted.onrender.com"]  # noqa: S104
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "192.168.1.4", "coach-trusted-backend.onrender.com", "coach-trusted.onrender.com"]  # noqa: S104
 
 # CACHES
 # ------------------------------------------------------------------------------

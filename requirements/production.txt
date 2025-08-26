@@ -17,3 +17,4 @@ boto3==1.39.10  # https://pypi.org/project/boto3/
 # Django
 # ------------------------------------------------------------------------------
 factory-boy==3.3.3  # https://github.com/FactoryBoy/factory_boy
+django-debug-toolbar==5.2.0
