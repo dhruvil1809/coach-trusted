@@ -43,7 +43,7 @@ django-filter==25.1  # https://pypi.org/project/django-filter/
 
 # Firebase
 # ------------------------------------------------------------------------------
-firebase-admin==6.9.0  # https://pypi.org/project/firebase-admin/
+firebase-admin==7.1.0  # https://pypi.org/project/firebase-admin/
 
 # Development Tools
 # ------------------------------------------------------------------------------
