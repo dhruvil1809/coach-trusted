@@ -1,7 +1,0 @@
-# PostgreSQL
-# render database------------------------------------------------------------------------------
-POSTGRES_HOST=dpg-d2k646ali9vc73dvnlgg-a.oregon-postgres.render.com
-POSTGRES_PORT=5432
-POSTGRES_DB=coach_trusted
-POSTGRES_USER=coach_trusted_user
-POSTGRES_PASSWORD=KJApdjtStzPxBphDC3mBhEbLk6nFIwCj

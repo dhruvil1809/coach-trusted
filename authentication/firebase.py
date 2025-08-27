@@ -12,11 +12,7 @@ is_testing = "pytest" in sys.modules
 # Get the project root directory for reliable file paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Determine which credentials file to use based on environment
-if os.environ.get("DJANGO_SETTINGS_MODULE", "").endswith(".production"):
-    cred_path = BASE_DIR / ".envs" / ".production" / "firebase.json"
-else:
-    cred_path = BASE_DIR / ".envs" / ".local" / "firebase.json"
+cred_path = BASE_DIR / "firebasejson" / "firebase.json"
 
 # Handle Firebase initialization with proper test environment support
 if is_testing:
