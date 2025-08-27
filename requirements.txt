@@ -4,7 +4,7 @@ python-slugify==8.0.4  # https://github.com/un33k/python-slugify
 Pillow==11.3.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==25.1.0  # https://github.com/hynek/argon2_cffi
 whitenoise==6.9.0  # https://github.com/evansd/whitenoise
-redis==6.2.0  # https://github.com/redis/redis-py
+redis==6.4.0  # https://github.com/redis/redis-py
 hiredis==3.2.1  # https://github.com/redis/hiredis-py
 celery==5.5.3  # pyup: < 6.0  # https://github.com/celery/celery
 django-celery-beat==2.8.1  # https://github.com/celery/django-celery-beat
@@ -12,7 +12,7 @@ flower==2.0.1  # https://github.com/mher/flower
 uvicorn[standard]==0.35.0  # https://github.com/encode/uvicorn
 uvicorn-worker==0.3.0  # https://github.com/Kludex/uvicorn-worker
 gunicorn==23.0.0  # https://github.com/benoitc/gunicorn
-sentry-sdk==2.33.2  # https://github.com/getsentry/sentry-python
+sentry-sdk==2.35.1  # https://github.com/getsentry/sentry-python
 psycopg[c]==3.2.9  # https://github.com/psycopg/psycopg
 
 # Django
@@ -20,22 +20,22 @@ psycopg[c]==3.2.9  # https://github.com/psycopg/psycopg
 django==4.2.20  # pyup: < 5.1  # https://www.djangoproject.com/
 django-environ==0.12.0  # https://github.com/joke2k/django-environ
 django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
-django-allauth[mfa]==65.10.0  # https://github.com/pennersr/django-allauth
+django-allauth[mfa]==65.11.0  # https://github.com/pennersr/django-allauth
 django-crispy-forms==2.4  # https://github.com/django-crispy-forms/django-crispy-forms
 crispy-bootstrap5==2025.6  # https://github.com/django-crispy-forms/crispy-bootstrap5
 django-redis==5.4.0  # https://github.com/jazzband/django-redis
 django-extensions==4.1  # https://github.com/django-extensions/django-extensions
-django-unfold==0.63.0  # https://pypi.org/project/django-unfold/
-django-anymail==13.0  # https://github.com/anymail/django-anymail
+django-unfold==0.65.0  # https://pypi.org/project/django-unfold/
+django-anymail==13.0.1  # https://github.com/anymail/django-anymail
 django-storages==1.14.6  # https://pypi.org/project/django-storages/
-boto3==1.39.10  # https://pypi.org/project/boto3/
+boto3==1.40.18  # https://pypi.org/project/boto3/
 django-ckeditor-5==0.2.18  # https://pypi.org/project/django-ckeditor-5/
 django-debug-toolbar==5.2.0  # https://github.com/jazzband/django-debug-toolbar
 factory-boy==3.3.3  # https://github.com/FactoryBoy/factory_boy
 
 # Django REST Framework
 # ------------------------------------------------------------------------------
-djangorestframework==3.16.0  # https://github.com/encode/django-rest-framework
+djangorestframework==3.16.1  # https://github.com/encode/django-rest-framework
 django-cors-headers==4.7.0  # https://github.com/adamchainz/django-cors-headers
 djangorestframework-simplejwt==5.5.1  # https://pypi.org/project/djangorestframework-simplejwt/
 drf-spectacular==0.28.0  # https://github.com/tfranzel/drf-spectacular
@@ -54,13 +54,13 @@ watchfiles==1.1.0  # https://github.com/samuelcolvin/watchfiles
 # Testing
 # ------------------------------------------------------------------------------
 pytest==8.4.1  # https://github.com/pytest-dev/pytest
-pytest-sugar==1.0.0  # https://github.com/Frozenball/pytest-sugar
+pytest-sugar==1.1.1  # https://github.com/Frozenball/pytest-sugar
 pytest-cov==6.2.1  # https://pypi.org/project/pytest-cov/
 pytest-django==4.11.1  # https://github.com/pytest-dev/pytest-django
 django-coverage-plugin==3.1.1  # https://github.com/nedbat/django_coverage_plugin
-mypy==1.17.0  # https://github.com/python/mypy
+mypy==1.17.1  # https://github.com/python/mypy
 django-stubs[compatible-mypy]==5.2.2  # https://github.com/typeddjango/django-stubs
-djangorestframework-stubs==3.16.1  # https://github.com/typeddjango/djangorestframework-stubs
+djangorestframework-stubs==3.16.2  # https://github.com/typeddjango/djangorestframework-stubs
 
 # Documentation
 # ------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ sphinx-autobuild==2024.10.3  # https://github.com/GaretJax/sphinx-autobuild
 
 # Code Quality
 # ------------------------------------------------------------------------------
-ruff==0.12.4  # https://github.com/astral-sh/ruff
-coverage==7.9.2  # https://github.com/nedbat/coveragepy
+ruff==0.12.10  # https://github.com/astral-sh/ruff
+coverage==7.10.5  # https://github.com/nedbat/coveragepy
 djlint==1.36.4  # https://github.com/Riverside-Healthcare/djLint
-pre-commit==4.2.0  # https://github.com/pre-commit/pre-commit
+pre-commit==4.3.0  # https://github.com/pre-commit/pre-commit
