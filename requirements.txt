@@ -30,7 +30,7 @@ django-anymail==13.0  # https://github.com/anymail/django-anymail
 django-storages==1.14.6  # https://pypi.org/project/django-storages/
 boto3==1.39.10  # https://pypi.org/project/boto3/
 django-ckeditor-5==0.2.18  # https://pypi.org/project/django-ckeditor-5/
-django-debug-toolbar==5.2.0  # https://github.com/jazzband/django-debug-toolbar
+django-debug-toolbar==6.0.0  # https://github.com/jazzband/django-debug-toolbar
 factory-boy==3.3.3  # https://github.com/FactoryBoy/factory_boy
 
 # Django REST Framework
