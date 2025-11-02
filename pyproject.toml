@@ -171,7 +171,7 @@ dependencies = [
     "djangorestframework-simplejwt (==5.5.1)",
     "drf-spectacular (==0.28.0)",
     "django-filter (==25.1)",
-    "firebase-admin (==6.9.0)",
+    "firebase-admin (==7.1.0)",
     "pytest-cov (==6.2.1)",
     "django-ckeditor-5 (==0.2.18)",
     "werkzeug[watchdog] (==3.1.3)",
