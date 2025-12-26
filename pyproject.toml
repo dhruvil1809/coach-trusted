@@ -184,7 +184,7 @@ dependencies = [
     "pytest-sugar (==1.0.0)",
     "djangorestframework-stubs (==3.16.1)",
     "sphinx (==8.3.0)",
-    "sphinx-autobuild (==2024.10.3)",
+    "sphinx-autobuild (==2025.8.25)",
     "ruff (==0.12.4)",
     "coverage (==7.9.2)",
     "djlint (==1.36.4)",
